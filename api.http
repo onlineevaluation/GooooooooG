@@ -1,0 +1,18 @@
+# For a quick start check out our HTTP Requests collection (Tools|HTTP Client|Open HTTP Requests Collection).
+#
+# Following HTTP Request Live Templates are available:
+# * 'gtrp' and 'gtr' create a GET request with or without query parameters;
+# * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
+# * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
+POST http://localhost:8080/code
+content-type: application/json
+
+{
+  "filepath":"d:/datafile/test.cpp",
+  "outpath":"d:/data/test.cpp",
+  "filename":"123.cpp",
+  "testSet":"{'datas': [{'input': '#$%1,2%$#','output': '#$%3%$#'},{'input': '#$%3,6%$#','output': '#$%9%$#'}]}",
+  "limitetime":3
+}
+
+###
