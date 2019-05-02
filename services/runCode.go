@@ -225,7 +225,12 @@ func runCode(outputPath, fileName string, result chan string, data []data, runCm
 		result <- string("code:9 perfect")
 	} else if flag > 0 && flag < len(data) {
 		logs.Info(flag)
-		result <- string("code:8 ") + strconv.Itoa(flag) + "/" + strconv.Itoa(len(data))
+		var score float64
+		println("%f", flag)
+		println("%d", len(data))
+		score = float64(flag) / float64(len(data))
+		println(score)
+		result <- string("code:8 ") + strconv.FormatFloat(score, 'f', 2, 64)
 	} else {
 		result <- string("code:3 running error")
 	}
