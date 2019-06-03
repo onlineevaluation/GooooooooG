@@ -17,7 +17,7 @@ func (code *CodeRunnerController) Post() {
 
 	var ob model.CodeInfo
 	//body := code.Ctx.Input.RequestBody
-	json.Unmarshal(code.Ctx.Input.RequestBody, &ob)
+	_ = json.Unmarshal(code.Ctx.Input.RequestBody, &ob)
 	codeparam := &model.CodeInfo{FilePath: ob.FilePath, OutPath: ob.OutPath, FileName: ob.FileName, TestSet: ob.TestSet, LimiteTime: ob.LimiteTime}
 	logs.Info("file path ", codeparam.LimiteTime)
 	logs.Info("data is ", codeparam.FilePath)
