@@ -47,7 +47,7 @@ type data struct {
 }
 
 func JudgeCode(filePath, outputPath, fileName string, data string, limitTime int64) string {
-
+	println("json is " + data)
 	result := make(chan string)
 	// 解析 json
 	var d datas
@@ -122,6 +122,9 @@ func runInWindows(filePath, outputPath, fileName string, result chan string, dat
 
 }
 
+/**
+linux 和 macOs
+*/
 func runInXnux(filePath, outputPath, fileName string, result chan string, data []data, limitTime int64) {
 	println("check code ")
 	cmdLine := "gcc -pedantic " + filePath + " -o " + outputPath + "/" + fileName
@@ -158,7 +161,7 @@ func judge(outputPath, fileName string, result chan string, data []data, limitTi
 	switch osName {
 	case "windows":
 		runCmdLine := outputPath + "/" + fileName
-		go runCode(outputPath, fileName, result, data, runCmdLine)
+		go runCode(result, data, runCmdLine)
 		for {
 			cur := time.Now().Unix()
 			if cur-start >= limitTime {
@@ -173,7 +176,7 @@ func judge(outputPath, fileName string, result chan string, data []data, limitTi
 	case "linux":
 		runCmdLine := outputPath + "/" + fileName
 		println("run line " + runCmdLine)
-		go runCode(outputPath, fileName, result, data, runCmdLine)
+		go runCode(result, data, runCmdLine)
 		for {
 			cur := time.Now().Unix()
 			if cur-start >= limitTime {
@@ -196,7 +199,7 @@ func judge(outputPath, fileName string, result chan string, data []data, limitTi
 /*
 	代码运行
 */
-func runCode(outputPath, fileName string, result chan string, data []data, runCmdLine string) {
+func runCode(result chan string, data []data, runCmdLine string) {
 	println("程序准备运行")
 	var flag = 0
 	for i := 0; i < len(data); i++ {
